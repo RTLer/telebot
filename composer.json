@@ -1,0 +1,19 @@
+{
+  "name": "rtler/telebot",
+  "description": "telegram bot base",
+  "type": "php",
+  "license": "GPL v2.0",
+  "authors": [
+    {
+      "name": "RTLer",
+      "email": "rtler@github.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "RTLer\\Telebot\\": "src/"
+    }
+  }
+}
