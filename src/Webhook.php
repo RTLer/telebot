@@ -29,5 +29,17 @@ class Webhook
         return $data;
     }
 
-}
+    public function responseMessage($regex, $callback, $print = false)
+    {
+      if($this->response->hasType('message') && preg_match($regex, $this->input->text)){
+        $data = $this->response->response('message', $this->input, $callback);
+        $data["method"] = $type;
+        if ($print) {
+          $this->printApiAnswer($data);
+        }
+        return $data;
+      }
+      return false;
+    }
 
+}
