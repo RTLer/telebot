@@ -9,7 +9,7 @@ class Webhook
     public function __construct()
     {
         $this->response = new Response();
-        $this->input = $this->response->parseInputs(file_get_contents("php://input"));
+        $this->input = $this->response->parseInputs(file_get_contents("php://input"))['message'];
     }
 
     public function printApiAnswer($output)
@@ -22,7 +22,6 @@ class Webhook
     public function response($type, $callback, $print = false)
     {
         $data = $this->response->response($type, $this->input, $callback);
-        $data["method"] = $type;
         if ($print) {
             $this->printApiAnswer($data);
         }
@@ -31,10 +30,10 @@ class Webhook
 
     public function responseMessage($regex, $callback, $print = false)
     {
-      if($this->response->hasType('message') && preg_match($regex, $this->input->text)){
+      if($this->response->response->hasType('message', $this->input) && preg_match($regex, $this->input['text'])){
         return $this->response('message', $callback, $print);
       }
-      return false;
+      return null;
     }
 
 }

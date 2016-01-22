@@ -44,7 +44,8 @@ class ResponseTypes
 
     public function hasType($type, $object)
     {
-        return $this->validator->isMatch($type, $object);
+      $typeObj = $this->allTypes()[$type];
+        return $this->validator->isMatch($typeObj, $object);
     }
 
     public function detail($type = 'string', $optional = true)

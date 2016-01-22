@@ -34,7 +34,7 @@ class validator
 
         preg_match('/^array:(?P<type>.+)/', $format, $matches);
 
-        //for
+        return true;
 
     }
 
